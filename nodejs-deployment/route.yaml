@@ -1,0 +1,15 @@
+kind: Route
+apiVersion: route.openshift.io/v1
+metadata:
+    name: cloud-tests
+    labels:
+        app: nodejs-sample
+spec:
+    host: deplo-test.apps-crc.testing
+    to:
+        kind: Service
+        name: cloud-tests
+        weight: 100
+    port:
+        targetPort: 8080-tcp
+    wildcardPolicy: None

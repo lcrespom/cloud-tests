@@ -1,0 +1,41 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+    name: cloud-tests
+    labels:
+        app: nodejs-sample
+spec:
+    replicas: 2
+    selector:
+        matchLabels:
+            deployment: cloud-tests
+    template:
+        metadata:
+            labels:
+                deployment: cloud-tests
+            annotations:
+                openshift.io/generated-by: OpenShiftNewApp
+        spec:
+            containers:
+                - name: cloud-tests
+                  image: >-
+                      image-registry.openshift-image-registry.svc:5000/luis-test/cloud-tests@sha256:da73f6c3cea91c78acd8ca660594f819cae714214e63ae77807dc2ebd9035370
+                  ports:
+                      - containerPort: 8080
+                        protocol: TCP
+                  resources: {}
+                  terminationMessagePath: /dev/termination-log
+                  terminationMessagePolicy: File
+                  imagePullPolicy: IfNotPresent
+            restartPolicy: Always
+            terminationGracePeriodSeconds: 30
+            dnsPolicy: ClusterFirst
+            securityContext: {}
+            schedulerName: default-scheduler
+    strategy:
+        type: RollingUpdate
+        rollingUpdate:
+            maxUnavailable: 25%
+            maxSurge: 25%
+    revisionHistoryLimit: 10
+    progressDeadlineSeconds: 600
