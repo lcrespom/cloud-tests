@@ -10,7 +10,7 @@ The server is accessible via web console at:
 
 Log in as administrator:
   Username: kubeadmin
-  Password: QP3W7-r5gmU-D8u8E-XcZYC # changes every time
+  Password: MF2PA-QvXQ9-kU6cs-X9rD9 # changes every time
 
   oc login -u kubeadmin https://api.crc.testing:6443
 
@@ -23,7 +23,9 @@ Use the 'oc' command line interface:
   > oc login -u developer https://api.crc.testing:6443
 ```
 
-The ArgoCD Application YAML:
+# ArgoCD
+
+## The ArgoCD Application YAML:
 
 ```yaml
 apiVersion: argoproj.io/v1alpha1
@@ -45,4 +47,10 @@ spec:
     syncPolicy:
         syncOptions:
             - CreateNamespace=true
+```
+
+## Getting the admin password
+
+```
+oc extract secret/openshift-gitops-cluster -n openshift-gitops --to=-
 ```
