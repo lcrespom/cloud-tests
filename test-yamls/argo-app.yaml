@@ -1,0 +1,19 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+    name: argocd-deplo-test5
+spec:
+    destination:
+        name: in-cluster
+        namespace: argo-deplo-ns
+        server: ''
+    source:
+        path: nodejs-deployment
+        repoURL: 'https://github.com/lcrespom/cloud-tests.git'
+        targetRevision: HEAD
+        directory:
+            recurse: true
+    project: default
+    syncPolicy:
+        syncOptions:
+            - CreateNamespace=true

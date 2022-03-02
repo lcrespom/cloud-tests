@@ -19,7 +19,7 @@ spec:
             containers:
                 - name: cloud-tests
                   image: >-
-                      image-registry.openshift-image-registry.svc:5000/luis-test/cloud-tests@sha256:da73f6c3cea91c78acd8ca660594f819cae714214e63ae77807dc2ebd9035370
+                      image-registry.openshift-image-registry.svc:5000/node-test/cloud-tests@sha256:8e995ae3a3fbce18a24e0d40125dd645ae2bc3e331552abbbda8f8cf47b0d598
                   ports:
                       - containerPort: 8080
                         protocol: TCP
