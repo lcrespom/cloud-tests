@@ -31,7 +31,7 @@ Use the 'oc' command line interface:
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-    name: argocd-deplo-test3
+    name: argocd-deplo-test
 spec:
     destination:
         name: in-cluster
@@ -54,3 +54,13 @@ spec:
 ```
 oc extract secret/openshift-gitops-cluster -n openshift-gitops --to=-
 ```
+
+## Synchronize error
+
+See workaround here: https://access.redhat.com/solutions/6447811
+
+```
+oc adm policy add-role-to-user admin system:serviceaccount:openshift-gitops:openshift-gitops-argocd-application-controller -n argo-deplo-ns
+```
+
+The namespace of the above command must match with the spec.destination.namespace field of the above yaml.
