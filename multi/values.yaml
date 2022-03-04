@@ -1,0 +1,16 @@
+name: fish
+configmaps:
+    - name: one
+      data:
+          foo: bar
+          cat: dog
+    - name: two
+      data:
+          two_data_1: two-value-1
+          two_data_2: two-value-2
+          two_data_3: two-value-3
+    - name: three
+      data:
+          three_data_1: three-value-1
+          three_data_2: three-value-2
+          three_data_3: three-value-3
